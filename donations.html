@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donations | சைலாபுரி ஆதீன திருமடம்</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <div class="logo-area">
+                <img src="images/56fa0e18-81f3-4be4-989b-5fe764f29316.jpeg" alt="Logo">
+                <div class="logo-text">
+                    <h1>சைலாபுரி ஆதீன திருமடம்</h1>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="pooja-booking.html">Pooja Booking</a></li>
+                <li><a href="live-darshan.html">Live Darshan</a></li>
+                <li><a href="donations.html" class="active">Donations</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <h1>Support Our Dharma Seva</h1>
+        <p>Your contribution helps us preserve our ancient traditions</p>
+    </section>
+
+    <section class="container py-4">
+        <div class="glass-card" style="max-width: 600px; margin: 0 auto; text-align: center;">
+            <h2 class="gold-text mb-2">Make a Donation</h2>
+            <p style="margin-bottom: 30px;">All donations are exempted under 80G.</p>
+            
+            <form id="donationForm">
+                <div class="form-group">
+                    <label>Select Amount (₹)</label>
+                    <div style="display: flex; gap: 10px; margin-bottom: 15px; justify-content: center; flex-wrap: wrap;">
+                        <button type="button" class="btn btn-gold" onclick="document.getElementById('donationAmount').value = 108">₹ 108</button>
+                        <button type="button" class="btn btn-gold" onclick="document.getElementById('donationAmount').value = 501">₹ 501</button>
+                        <button type="button" class="btn btn-gold" onclick="document.getElementById('donationAmount').value = 1001">₹ 1001</button>
+                        <button type="button" class="btn btn-gold" onclick="document.getElementById('donationAmount').value = 5001">₹ 5001</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Or Enter Custom Amount (₹) *</label>
+                    <input type="number" id="donationAmount" class="form-control" required placeholder="Enter Amount" min="1" value="108" style="text-align: center; font-size: 1.2rem; font-weight: bold;">
+                </div>
+
+                <div class="form-group">
+                    <label>Your Name *</label>
+                    <input type="text" id="donationName" class="form-control" required placeholder="Enter your name">
+                </div>
+
+                <div class="form-group">
+                    <label>Pan Card Number (Optional - for 80G)</label>
+                    <input type="text" id="donationPan" class="form-control" placeholder="Enter PAN Number">
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-2" style="width: 100%; font-size: 1.2rem; padding: 15px;">Proceed to Donate</button>
+            </form>
+            
+            <hr style="border: 0; border-top: 1px solid var(--glass-border); margin: 30px 0;">
+            
+            <h3 class="gold-text">Bank Details</h3>
+            <ul class="timing-list" style="text-align: left; max-width: 400px; margin: 0 auto;">
+                <li><span>Bank Name:</span> <span id="dyn-bank-name-don">Axis Bank</span></li>
+                <li><span>Account Name:</span> <span id="dyn-acc-name-don" style="font-size: 0.8rem;">SAILAPURI AADHENAM THIRUMADAM FOUNDATION</span></li>
+                <li><span>Account No:</span> <span id="dyn-acc-number-don">925020011018261</span></li>
+                <li><span>IFSC Code:</span> <span id="dyn-ifsc-don">UTIB0001501</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <script src="js/supabase.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

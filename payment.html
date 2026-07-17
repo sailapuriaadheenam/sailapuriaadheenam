@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Payment | சைலாபுரி ஆதீன திருமடம்</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Changed from center to prevent top cutoff */
+            min-height: 100vh;       /* Allow scrolling */
+            padding: 40px 20px;      /* Breathing room at top and bottom */
+            box-sizing: border-box;
+            background-color: var(--bg-dark);
+            background-image: none; /* simple background for payment */
+        }
+    </style>
+</head>
+<body id="paymentSimulator">
+
+    <div class="glass-card" style="width: 100%; max-width: 450px; text-align: center;">
+        <img src="images/56fa0e18-81f3-4be4-989b-5fe764f29316.jpeg" alt="Logo" style="width: 60px; border-radius: 50%; margin-bottom: 20px; border: 2px solid var(--gold-primary);">
+        <h2 class="gold-text">Secure Payment Gateway</h2>
+        <p style="color: var(--text-muted); margin-bottom: 30px;">Complete your transaction to proceed.</p>
+        
+        <div style="background: rgba(0,0,0,0.5); padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+            <p>Amount to Pay</p>
+            <h1 id="payAmountDisplay" class="gold-text">₹ 0</h1>
+        </div>
+
+        <div id="paymentOptions">
+            <p style="margin-bottom: 15px; font-weight: bold; color: var(--gold-primary);">Please scan the QR code or pay to the Bank Account below:</p>
+            
+            <div style="background: white; padding: 15px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 15px; width: 150px; height: 150px; border: 2px solid var(--gold-secondary); position: relative; overflow: hidden;">
+                <span style="position: absolute; color: #888; font-size: 0.8rem; text-align: center;">Upload QR in<br>Admin Panel</span>
+                <img id="dyn-qr-code" src="images/qr-placeholder.png" onerror="this.style.opacity='0'" alt="QR Code" style="width: 100%; height: 100%; object-fit: contain; position: relative; z-index: 2; background: white;">
+            </div>
+            
+            <ul class="timing-list" style="text-align: left; max-width: 400px; margin: 0 auto 20px auto; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px;">
+                <li><span>Bank Name:</span> <span id="dyn-bank-name" class="gold-text">Axis Bank</span></li>
+                <li><span>Account Name:</span> <span id="dyn-acc-name" class="gold-text" style="font-size: 0.8rem;">SAILAPURI AADHENAM THIRUMADAM FOUNDATION</span></li>
+                <li><span>Account No:</span> <span id="dyn-acc-number" class="gold-text">925020011018261</span></li>
+                <li><span>IFSC Code:</span> <span id="dyn-ifsc" class="gold-text">UTIB0001501</span></li>
+            </ul>
+
+            <form id="manualPaymentForm" style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; border: 1px solid var(--glass-border);">
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label style="text-align: left; display: block; margin-bottom: 8px; color: #fff; font-weight: bold;">Enter Transaction ID / UTR No. *</label>
+                    <input type="text" id="transactionId" required placeholder="e.g. 123456789012" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.1); border: 1px solid var(--gold-secondary); color: white; border-radius: 5px; text-align: center; font-size: 1.1rem; outline: none;">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 1.1rem; margin-bottom: 15px; font-weight: bold;">SUBMIT PAYMENT DETAILS</button>
+            </form>
+            <a href="javascript:history.back()" style="color: var(--text-muted); text-decoration: underline; font-size: 0.9rem;">Cancel and Return</a>
+        </div>
+
+        <div id="paymentLoading" style="display: none;">
+            <div class="spinner"></div>
+            <p class="gold-text mt-2">Processing Payment... Please don't close this window.</p>
+        </div>
+    </div>
+
+    <script src="js/supabase.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

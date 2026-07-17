@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | சைலாபுரி ஆதீன திருமடம்</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: var(--bg-dark);
+            background-image: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-card" style="width: 100%; max-width: 400px; text-align: center;">
+        <img src="images/56fa0e18-81f3-4be4-989b-5fe764f29316.jpeg" alt="Logo" style="width: 60px; border-radius: 50%; margin-bottom: 20px; border: 2px solid var(--gold-primary);">
+        <h2 class="gold-text">Admin Login</h2>
+        <p style="color: var(--text-muted); margin-bottom: 30px;">Enter credentials to access the panel.</p>
+        
+        <form id="adminLoginForm">
+            <div class="form-group">
+                <label style="text-align: left;">Password</label>
+                <input type="password" id="adminPassword" class="form-control" required placeholder="Enter password">
+            </div>
+
+            <div id="loginError" style="color: #ff4d4d; margin-bottom: 15px; display: none; text-align: left; font-size: 0.9rem;">Invalid credentials. Please try again.</div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 1.1rem;">Login</button>
+            <div class="mt-2 text-center">
+                <a href="index.html" style="color: var(--text-muted); text-decoration: underline; font-size: 0.9rem;">Back to Website</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="js/supabase.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
