@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12 ஜோதிர்லிங்க புகைப்பட கேலரி | சைலாபுரி ஆதீன திருமடம்</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .gallery-nav-tabs {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 15px 5px;
+            margin-bottom: 30px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold-primary) rgba(0,0,0,0.3);
+        }
+        .gallery-tab-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            color: var(--text-light);
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            white-space: nowrap;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        .gallery-tab-btn:hover, .gallery-tab-btn.active {
+            background: linear-gradient(45deg, var(--gold-secondary), var(--gold-primary));
+            color: var(--secondary-color);
+            border-color: var(--gold-primary);
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .gallery-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+        .gallery-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+            border-color: var(--gold-primary);
+        }
+        .gallery-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .gallery-card:hover img {
+            transform: scale(1.05);
+        }
+        .gallery-card-body {
+            padding: 15px;
+        }
+        .gallery-card-title {
+            font-size: 1rem;
+            color: var(--gold-primary);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .gallery-card-meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+        }
+        /* Lightbox Modal */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+            border: 2px solid var(--gold-primary);
+        }
+        .lightbox-caption {
+            margin-top: 15px;
+            color: var(--gold-primary);
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold-primary);
+            font-size: 2.5rem;
+            cursor: pointer;
+            user-select: none;
+            padding: 10px;
+        }
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div>Email: info@sailapuriaadheenam.org | Phone: +91 89404 83839</div>
+        <div class="social-icons">
+            <a href="#">FB</a>
+            <a href="#">IG</a>
+            <a href="#">YT</a>
+        </div>
+    </div>
+
+    <!-- Header / Nav -->
+    <header>
+        <nav class="main-nav">
+            <div class="logo-area">
+                <img src="images/56fa0e18-81f3-4be4-989b-5fe764f29316.jpeg" alt="Logo">
+                <div class="logo-text">
+                    <h1>சைலாபுரி ஆதீன திருமடம்</h1>
+                    <p>SAILAPURI AADHEENA THIRUMADAM</p>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="jyothirlinga-gallery.html" class="active">12 ஜோதிர்லிங்க கேலரி</a></li>
+                <li><a href="pooja-booking.html">Pooja Booking</a></li>
+                <li><a href="live-darshan.html">Live Darshan</a></li>
+                <li><a href="donations.html">Donations</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header" style="text-align: center; padding: 40px 20px;">
+        <h1 style="font-size: 2.2rem; margin-bottom: 10px;">12 ஜோதிர்லிங்க புகைப்பட கேலரி</h1>
+        <p style="color: var(--gold-secondary); max-width: 850px; margin: 0 auto; font-size: 1.1rem; line-height: 1.6;">
+            உலக நன்மை வேண்டி சைலாபுரி ஆதீன திருமடம் சார்பாக பாரத தேசத்தில் உள்ள 12 ஜோதிர்லிங்க ஆலயங்களில் நடைபெற்ற ஏகாதச ருத்ர யாகம் & ருத்ராபிஷேக திருக்காட்சிகள்
+        </p>
+    </section>
+
+    <!-- Main Gallery Section -->
+    <section class="container py-4">
+        <!-- 12 Jyothirlinga Category Tabs -->
+        <div class="gallery-nav-tabs" id="jyothirlingaTabs">
+            <button class="gallery-tab-btn active" data-temple="all">அனைத்து ஆலயங்கள் (<span id="count-all">0</span>)</button>
+            <button class="gallery-tab-btn" data-temple="somnath">1. சோமநாதர் (குஜராத்)</button>
+            <button class="gallery-tab-btn" data-temple="mallikarjuna">2. மல்லிகார்ஜுனர் (ஆந்திரா)</button>
+            <button class="gallery-tab-btn" data-temple="mahakaleshwar">3. மகாகாளேஸ்வரர் (மத்திய பிரதேசம்)</button>
+            <button class="gallery-tab-btn" data-temple="omkareshwar">4. ஓம்காரேஸ்வரர் (மத்திய பிரதேசம்)</button>
+            <button class="gallery-tab-btn" data-temple="baidyanath">5. வைத்யநாதர் (ஜார்க்கண்ட்)</button>
+            <button class="gallery-tab-btn" data-temple="bhimashankar">6. பீமாசங்கரர் (மகாராஷ்டிரா)</button>
+            <button class="gallery-tab-btn" data-temple="rameshwaram">7. இராமநாதசுவாமி (தமிழ்நாடு)</button>
+            <button class="gallery-tab-btn" data-temple="nageshwar">8. நாகேஸ்வரர் (குஜராத்)</button>
+            <button class="gallery-tab-btn" data-temple="kashi">9. காசி விஸ்வநாதர் (உத்தரபிரதேசம்)</button>
+            <button class="gallery-tab-btn" data-temple="trimbakeshwar">10. திரியம்பகேஸ்வரர் (மகாராஷ்டிரா)</button>
+            <button class="gallery-tab-btn" data-temple="kedarnath">11. கேதாரநாதர் (உத்தராகண்ட்)</button>
+            <button class="gallery-tab-btn" data-temple="grishneshwar">12. திருஷ்ணேஸ்வரர் (மகாராஷ்டிரா)</button>
+        </div>
+
+        <!-- Photos Grid -->
+        <div class="gallery-grid" id="jyothirlingaGrid">
+            <!-- Dynamic photos loaded via JavaScript -->
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightboxModal">
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <span class="lightbox-nav lightbox-prev" id="lightboxPrev">&#10094;</span>
+        <img class="lightbox-content" id="lightboxImg" src="" alt="Gallery Image">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+        <span class="lightbox-nav lightbox-next" id="lightboxNext">&#10095;</span>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>📍 சைலாபுரி ஆதீன திருமடம், சேலம், தமிழ்நாடு</p>
+                <p>📞 +91 89404 83839</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="timing-list" style="border: none;">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="jyothirlinga-gallery.html">12 ஜோதிர்லிங்க கேலரி</a></li>
+                    <li><a href="pooja-booking.html">Book Pooja</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/supabase.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

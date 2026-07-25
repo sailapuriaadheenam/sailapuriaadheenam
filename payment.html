@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Payment | சைலாபுரி ஆதீன திருமடம்</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 30px 15px;
+            box-sizing: border-box;
+            background-color: var(--bg-dark);
+        }
+        .qr-card-box {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            color: #121212;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .qr-img {
+            max-width: 280px;
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        .merchant-title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #1a1a1a;
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+        }
+        .merchant-meta {
+            font-size: 0.8rem;
+            color: #555;
+            margin-top: 4px;
+        }
+        .card-details-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+            background: rgba(255,255,255,0.06);
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+            margin-bottom: 20px;
+            font-size: 0.8rem;
+            text-align: left;
+        }
+        .card-badge {
+            font-weight: bold;
+            color: var(--gold-primary);
+        }
+    </style>
+</head>
+<body id="paymentSimulator">
+
+    <div class="glass-card" style="width: 100%; max-width: 520px; text-align: center;">
+        <img src="images/56fa0e18-81f3-4be4-989b-5fe764f29316.jpeg" alt="Logo" style="width: 65px; height: 65px; border-radius: 50%; margin-bottom: 15px; border: 2px solid var(--gold-primary);">
+        <h2 class="gold-text">சைலாபுரி ஆதீன திருமடம்</h2>
+        <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem;">Official Pooja Booking & Donation Payment Portal</p>
+        
+        <div style="background: rgba(0,0,0,0.6); padding: 15px 20px; border-radius: 8px; margin-bottom: 25px; border: 1px solid var(--gold-primary);">
+            <p style="font-size: 0.9rem; color: #ccc; margin-bottom: 5px;">Total Amount to Pay</p>
+            <h1 id="payAmountDisplay" class="gold-text" style="font-size: 2.2rem; margin: 0;">₹ 365</h1>
+        </div>
+
+        <div id="paymentOptions">
+            <!-- Bharat QR Card -->
+            <div class="qr-card-box">
+                <div style="font-weight: 700; color: #1e3799; letter-spacing: 1px; font-size: 0.9rem; margin-bottom: 8px;">BHARAT<span style="color: #44bd32;">QR</span> SCAN TO PAY</div>
+                
+                <img id="dyn-qr-code" src="images/bharat_qr.png" alt="Bharat QR Code" class="qr-img">
+                
+                <div class="merchant-title">SAILAPURI AADHEENAM THI, SALEM</div>
+                <div class="merchant-meta">MID: <strong>037347015010074</strong> &nbsp;|&nbsp; TID: <strong>47972090</strong></div>
+                <div class="merchant-meta" style="font-size: 0.75rem; color: #777; margin-top: 4px;">Helpdesk: 1860 233 2332 / 022 40426060</div>
+            </div>
+
+            <!-- Alternative Card Numbers -->
+            <div class="card-details-box">
+                <div>
+                    <div class="card-badge">💳 Masterpass</div>
+                    <div style="font-family: monospace; font-size: 0.85rem; margin-top: 2px;">512260007351348</div>
+                </div>
+                <div>
+                    <div class="card-badge">💳 RuPay</div>
+                    <div style="font-family: monospace; font-size: 0.85rem; margin-top: 2px;">6100020073513503</div>
+                </div>
+                <div>
+                    <div class="card-badge">💳 Visa / mVISA</div>
+                    <div style="font-family: monospace; font-size: 0.85rem; margin-top: 2px;">4604901073513492</div>
+                </div>
+            </div>
+
+            <!-- Bank Transfer Details -->
+            <div style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; text-align: left; margin-bottom: 25px; border: 1px solid var(--glass-border);">
+                <h4 class="gold-text" style="margin-bottom: 10px; font-size: 0.95rem; border-bottom: 1px dashed var(--gold-secondary); padding-bottom: 5px;">Bank Transfer / NEFT / IMPS Details</h4>
+                <ul class="timing-list" style="font-size: 0.85rem;">
+                    <li><span>Bank Name:</span> <span id="dyn-bank-name" class="gold-text">Axis Bank</span></li>
+                    <li><span>Account Name:</span> <span id="dyn-acc-name" class="gold-text" style="font-size: 0.8rem;">SAILAPURI AADHENAM THIRUMADAM FOUNDATION</span></li>
+                    <li><span>Account No:</span> <span id="dyn-acc-number" class="gold-text" style="font-family: monospace;">925020011018261</span></li>
+                    <li><span>IFSC Code:</span> <span id="dyn-ifsc" class="gold-text" style="font-family: monospace;">UTIB0001501</span></li>
+                </ul>
+            </div>
+
+            <!-- Transaction Form -->
+            <form id="manualPaymentForm" style="background: rgba(212, 175, 55, 0.05); padding: 20px; border-radius: 10px; border: 1px solid var(--gold-primary);">
+                <h3 class="gold-text" style="font-size: 1.1rem; margin-bottom: 10px;">Step 2: Submit Payment Reference</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">After completing payment via UPI/Bank, enter your UTR / Transaction ID below for Admin Verification.</p>
+                
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label style="text-align: left; display: block; margin-bottom: 8px; color: #fff; font-weight: bold; font-size: 0.9rem;">Transaction ID / UTR Number *</label>
+                    <input type="text" id="transactionId" required placeholder="e.g. 420512984512" style="width: 100%; padding: 14px; background: rgba(0,0,0,0.6); border: 2px solid var(--gold-secondary); color: #fff; border-radius: 6px; text-align: center; font-size: 1.15rem; font-weight: bold; letter-spacing: 1px; outline: none;">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 1.1rem; margin-bottom: 10px; font-weight: bold;">SUBMIT FOR ADMIN APPROVAL ➔</button>
+            </form>
+            
+            <div style="margin-top: 15px;">
+                <a href="pooja-booking.html" style="color: var(--text-muted); text-decoration: underline; font-size: 0.85rem;">← Back to Pooja Booking</a>
+            </div>
+        </div>
+
+        <div id="paymentLoading" style="display: none; padding: 30px 10px;">
+            <div class="spinner" style="margin: 0 auto 15px auto; width: 45px; height: 45px; border: 4px solid rgba(212,175,55,0.2); border-top-color: var(--gold-primary); border-radius: 50%; animation: spin 1s infinite linear;"></div>
+            <h3 class="gold-text">Submitting Payment Details...</h3>
+            <p style="color: var(--text-muted); margin-top: 8px;">Please wait while we record your transaction.</p>
+        </div>
+    </div>
+
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+
+    <script src="js/supabase.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
