@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | சைலாபுரி ஆதீன திருமடம்</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        window.onerror = function(message, source, lineno, colno, error) {
+            alert("JS Error: " + message + "\nSource: " + source + "\nLine: " + lineno);
+            return false;
+        };
+        window.addEventListener('unhandledrejection', function(event) {
+            alert("Unhandled Promise Rejection: " + event.reason);
+        });
+    </script>
+</head>
+<body class="admin-body">
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-brand">
+                <img src="images/56fa0e18-81f3-4be4-989b-5fe764f29316.jpeg" alt="Logo">
+                <h3>Admin Panel</h3>
+            </div>
+            <ul class="admin-nav">
+                <li><a href="#dashboard-section" class="active">Dashboard</a></li>
+                <li><a href="#content-management">Content Management</a></li>
+                <li><a href="#jyothirlinga-gallery-cms">12 Jyothirlinga Gallery</a></li>
+                <li><a href="#pooja-bookings">Pooja Bookings</a></li>
+                <li><a href="#donations-section">Donations</a></li>
+                <li><a href="index.html" target="_blank">View Website ↗</a></li>
+                <li><a href="#" id="adminLogoutBtn" style="color: #ff4d4d;">Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <h2>Dashboard Overview</h2>
+                <div class="admin-profile">
+                    <span>Admin</span>
+                    <img src="images/56fa0e18-81f3-4be4-989b-5fe764f29316.jpeg" alt="Profile">
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <!-- Stats -->
+                <div id="dashboard-section" class="admin-section">
+                    <div class="admin-stats-grid">
+                        <div class="admin-stat-card">
+                        <h3>Today's Bookings</h3>
+                        <div class="value" id="stat-bookings">25</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <h3>Live Viewers</h3>
+                        <div class="value" id="stat-viewers" style="color: #ff4d4d;">1,245</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <h3>Total Donations</h3>
+                        <div class="value" id="stat-donations">₹ 2,45,780</div>
+                    </div>
+                </div>
+                </div>
+
+                <!-- Content Management Section -->
+                <div class="glass-card mt-2 admin-section" id="content-management" style="display: none;">
+                    <h3 class="gold-text mb-2">Website Content & Image Management</h3>
+                    <p style="margin-bottom: 20px; color: var(--text-muted);">Update text and images. Changes are saved locally and will reflect on the main website.</p>
+                    
+                    <form id="adminContentForm">
+                        <div class="admin-form-grid">
+                            <div class="form-group">
+                                <label>Hero Banner Title</label>
+                                <input type="text" id="cms-hero-title" class="form-control" value="சைலாபுரி ஆதீன திருமடம்">
+                            </div>
+                            <div class="form-group">
+                                <label>Hero Banner Subtitle</label>
+                                <input type="text" id="cms-hero-subtitle" class="form-control" value="SAILAPURI AADHEENA THIRUMADAM">
+                            </div>
+                            <div class="form-group" style="grid-column: span 2;">
+                                <label>Hero Background Image</label>
+                                <div style="display: flex; gap: 15px; align-items: center;">
+                                    <img id="preview-hero-bg" src="images/hero-banner.png" style="width: 80px; height: 50px; object-fit: cover; border-radius: 4px; border: 1px solid var(--gold-secondary);">
+                                    <input type="file" id="cms-hero-bg" class="form-control" accept="image/*" style="padding: 10px;">
+                                </div>
+                            </div>
+                            
+                            <hr style="grid-column: span 2; border-top: 1px dashed var(--glass-border); margin: 10px 0;">
+                            
+                            <div class="form-group" style="grid-column: span 2;">
+                                <label>Spiritual Head Image (About Section)</label>
+                                <div style="display: flex; gap: 15px; align-items: center;">
+                                    <img id="preview-spiritual-img" src="images/0f5f1edd-2ee6-4163-b8c2-8ff76bded4a5.jpeg" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%; border: 1px solid var(--gold-secondary);">
+                                    <input type="file" id="cms-spiritual-img" class="form-control" accept="image/*" style="padding: 10px;">
+                                </div>
+                            </div>
+
+                            <hr style="grid-column: span 2; border-top: 1px dashed var(--glass-border); margin: 10px 0;">
+
+                            <div class="form-group" style="grid-column: span 2;">
+                                <label>Daily Pooja Timings (Format: Name | Time)</label>
+                                <textarea id="cms-pooja-timings" class="form-control" rows="4">காலை பூஜை | 05:30 AM
+உச்சிக்கால பூஜை | 12:00 PM
+சாயரட்சை பூஜை | 06:30 PM
+ராத்திரி பூஜை | 08:30 PM</textarea>
+                            </div>
+
+                            <div class="form-group" style="grid-column: span 2;">
+                                <label>Upcoming Festivals (Format: Name | Date)</label>
+                                <textarea id="cms-upcoming-festivals" class="form-control" rows="3">ஆடிப் பதினெட்டாம் பெருக்கு | 03 Aug 2026
+ஆவணி அவிட்டம் | 19 Aug 2026
+விநாயகர் சதுர்த்தி | 07 Sep 2026</textarea>
+                            </div>
+
+                            <div class="form-group" style="grid-column: span 2;">
+                                <label>Sevas & Services (Comma separated)</label>
+                                <textarea id="cms-sevas-services" class="form-control" rows="2">அன்னதானம், கல்வி உதவி, தர்ம சேவை, ஆன்மீக வழிகாட்டி</textarea>
+                            </div>
+
+                            <div class="form-group" style="grid-column: span 2;">
+                                <label>Pooja Booking Amount (₹) *</label>
+                                <input type="number" id="cms-pooja-amount" class="form-control" value="365" required style="font-size: 1.1rem; font-weight: bold; color: var(--gold-primary);">
+                            </div>
+
+                            <div class="form-group" style="grid-column: span 2;">
+                                <label>Bank Name</label>
+                                <input type="text" id="cms-bank-name" class="form-control" value="Axis Bank">
+                            </div>
+
+                            <div class="form-group" style="grid-column: span 2;">
+                                <label>Account Name</label>
+                                <input type="text" id="cms-acc-name" class="form-control" value="SAILAPURI AADHENAM THIRUMADAM FOUNDATION">
+                            </div>
+
+                            <div class="form-group" style="grid-column: span 2;">
+                                <label>Account Number</label>
+                                <input type="text" id="cms-acc-number" class="form-control" value="925020011018261">
+                            </div>
+
+                            <div class="form-group" style="grid-column: span 2;">
+                                <label>IFSC Code</label>
+                                <input type="text" id="cms-ifsc" class="form-control" value="UTIB0001501">
+                            </div>
+
+                            <div class="form-group" style="grid-column: span 2;">
+                                <label>Manual Payment QR Code Image</label>
+                                <div style="display: flex; gap: 15px; align-items: center;">
+                                    <img id="preview-qr-code" src="https://via.placeholder.com/150x150.png?text=Upload+QR+Code" style="width: 50px; height: 50px; object-fit: contain; border-radius: 4px; border: 1px solid var(--gold-secondary); background: white;">
+                                    <input type="file" id="cms-qr-code" class="form-control" accept="image/*" style="padding: 10px;">
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="grid-column: span 2; background: rgba(0,0,0,0.4); padding: 20px; border-radius: 10px; border: 1px solid var(--gold-primary);">
+                                <label style="font-size: 1.1rem; color: var(--gold-primary); font-weight: bold; margin-bottom: 12px; display: block;">📺 Temple Darshan Display Mode Switcher</label>
+                                <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 15px;">Choose whether to show a Live YouTube Stream or a Recorded Video File on the Live Darshan page.</p>
+
+                                <div style="display: flex; gap: 20px; margin-bottom: 18px; flex-wrap: wrap;">
+                                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; background: rgba(255,255,255,0.06); padding: 12px 18px; border-radius: 8px; border: 1px solid var(--glass-border);">
+                                        <input type="radio" name="cms_darshan_mode" id="mode-live" value="live" checked style="width: 18px; height: 18px; accent-color: #ff4d4d;">
+                                        <span style="font-weight: bold; color: #ff4d4d; font-size: 1rem;">🔴 Mode 1: Live Stream (YouTube)</span>
+                                    </label>
+
+                                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; background: rgba(255,255,255,0.06); padding: 12px 18px; border-radius: 8px; border: 1px solid var(--glass-border);">
+                                        <input type="radio" name="cms_darshan_mode" id="mode-video" value="video" style="width: 18px; height: 18px; accent-color: var(--gold-primary);">
+                                        <span style="font-weight: bold; color: var(--gold-primary); font-size: 1rem;">🎥 Mode 2: Recorded Video File</span>
+                                    </label>
+                                </div>
+
+                                <!-- Live Stream Options -->
+                                <div id="liveStreamOptionsGroup" style="margin-top: 15px;">
+                                    <label style="font-weight: bold; color: #fff;">Live Stream YouTube URL</label>
+                                    <input type="text" id="cms-live-url" class="form-control" value="https://www.youtube.com/embed/21X5lGlDOfg" placeholder="e.g. https://www.youtube.com/watch?v=21X5lGlDOfg">
+                                </div>
+
+                                <!-- Recorded Video Options -->
+                                <div id="recordedVideoOptionsGroup" style="margin-top: 15px; border-top: 1px dashed var(--glass-border); padding-top: 15px;">
+                                    <label style="font-weight: bold; color: #fff;">Video File URL (Google Drive / YouTube / Direct Video Link)</label>
+                                    <input type="text" id="cms-video-url" class="form-control" placeholder="e.g. https://drive.google.com/file/d/.../view or MP4 URL" value="" style="margin-bottom: 6px;">
+                                    <p style="font-size: 0.85rem; color: #4cd137; margin-bottom: 12px; font-weight: 500;">💡 Google Drive Link (Share link) Paste பண்ணினால் உடனே தானாகவே Embed Player-ஆக மாறி வெப்சைட்டில் பிளே ஆகும்!</p>
+                                    
+                                    <label style="font-weight: bold; color: #fff; margin-top: 8px; display: block;">Or Upload Local Video File (MP4, WebM)</label>
+                                    <input type="file" id="cms-video-file" class="form-control" accept="video/*" style="padding: 10px; margin-bottom: 10px;">
+                                    
+                                    <div style="margin-top: 10px;">
+                                        <label style="font-size: 0.85rem; color: var(--gold-secondary); display: block; margin-bottom: 5px;">Video Live Preview:</label>
+                                        <iframe id="preview-iframe" style="width: 100%; max-width: 480px; height: 260px; border-radius: 8px; display: none; background: #000; border: 1px solid var(--gold-primary);" frameborder="0" allowfullscreen allow="autoplay"></iframe>
+                                        <video id="preview-video" controls style="max-width: 100%; max-height: 220px; border-radius: 8px; display: none; background: #000; border: 1px solid var(--gold-primary);"></video>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-2 text-center">
+                            <button type="submit" class="btn btn-primary" style="padding: 12px 40px; font-size: 1.1rem;">Save Changes</button>
+                            <div id="saveMsg" style="color: #4cd137; margin-top: 10px; display: none;">Changes saved successfully!</div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Pooja Bookings Section -->
+                <div class="glass-card mt-2 admin-section" id="pooja-bookings" style="display: none;">
+                    <h3 class="gold-text mb-2">Recent Pooja Bookings</h3>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Name & Details</th>
+                                <th>Pooja Name</th>
+                                <th>Txn / UTR ID</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-bookings-tbody">
+                            <tr>
+                                <td colspan="7" class="text-center" style="color: var(--text-muted);">Loading bookings...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 12 Jyothirlinga Gallery Section -->
+                <div class="glass-card mt-2 admin-section" id="jyothirlinga-gallery-cms" style="display: none;">
+                    <h3 class="gold-text mb-2">🛕 12 Jyothirlinga Ekadasa Rudra Yagam Photo Upload & Management</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">Upload and categorize Yagam photos into the 12 Jyothirlinga temple galleries.</p>
+
+                    <form id="jyothirlingaForm" style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 8px; border: 1px solid var(--glass-border); margin-bottom: 30px;">
+                        <h4 class="gold-text" style="margin-bottom: 15px; font-size: 1.1rem;">Upload New Yagam Photo</h4>
+                        
+                        <div class="admin-form-grid">
+                            <div class="form-group">
+                                <label>Select Jyothirlinga Temple *</label>
+                                <select id="galleryTempleSelect" class="form-control" required>
+                                    <option value="somnath">1. சோமநாதர் (Somnath - Gujarat)</option>
+                                    <option value="mallikarjuna">2. மல்லிகார்ஜுனர் (Mallikarjuna - AP)</option>
+                                    <option value="mahakaleshwar">3. மகாகாளேஸ்வரர் (Mahakaleshwar - MP)</option>
+                                    <option value="omkareshwar">4. ஓம்காரேஸ்வரர் (Omkareshwar - MP)</option>
+                                    <option value="baidyanath">5. வைத்யநாதர் (Baidyanath - Jharkhand)</option>
+                                    <option value="bhimashankar">6. பீமாசங்கரர் (Bhimashankar - Maharashtra)</option>
+                                    <option value="rameshwaram">7. இராமநாதசுவாமி (Rameshwaram - TN)</option>
+                                    <option value="nageshwar">8. நாகேஸ்வரர் (Nageshwar - Gujarat)</option>
+                                    <option value="kashi">9. காசி விஸ்வநாதர் (Kashi - UP)</option>
+                                    <option value="trimbakeshwar">10. திரியம்பகேஸ்வரர் (Trimbakeshwar - MH)</option>
+                                    <option value="kedarnath">11. கேதாரநாதர் (Kedarnath - UK)</option>
+                                    <option value="grishneshwar">12. திருஷ்ணேஸ்வரர் (Grishneshwar - MH)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Photo Title / Event Name *</label>
+                                <input type="text" id="galleryPhotoTitle" class="form-control" required placeholder="e.g. ருத்ராபிஷேக அலங்காரம் / ஏகாதச ருத்ர யாகம்">
+                            </div>
+
+                            <div class="form-group" style="grid-column: span 2;">
+                                <label>Upload Photo File or Image URL *</label>
+                                <div style="display: flex; gap: 15px; align-items: center;">
+                                    <input type="file" id="galleryPhotoFile" class="form-control" accept="image/*" style="padding: 10px; flex: 1;">
+                                    <input type="text" id="galleryPhotoUrl" class="form-control" placeholder="Or paste image URL" style="flex: 1;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-2 text-center">
+                            <button type="submit" class="btn btn-primary" style="padding: 10px 30px;">+ Upload Photo to Gallery</button>
+                        </div>
+                    </form>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+                        <h4 class="gold-text" style="margin: 0;">Uploaded Photos Manager (Website Images)</h4>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <label style="font-size: 0.9rem; color: var(--gold-secondary);">Filter Temple:</label>
+                            <select id="adminGalleryFilter" class="form-control" style="width: auto; padding: 6px 12px;">
+                                <option value="all">All 12 Temples (அனைத்தும்)</option>
+                                <option value="somnath">1. சோமநாதர் (Somnath)</option>
+                                <option value="mallikarjuna">2. மல்லிகார்ஜுனர் (Mallikarjuna)</option>
+                                <option value="mahakaleshwar">3. மகாகாளேஸ்வரர் (Mahakaleshwar)</option>
+                                <option value="omkareshwar">4. ஓம்காரேஸ்வரர் (Omkareshwar)</option>
+                                <option value="baidyanath">5. வைத்யநாதர் (Baidyanath)</option>
+                                <option value="bhimashankar">6. பீமாசங்கரர் (Bhimashankar)</option>
+                                <option value="rameshwaram">7. இராமநாதசுவாமி (Rameshwaram)</option>
+                                <option value="nageshwar">8. நாகேஸ்வரர் (Nageshwar)</option>
+                                <option value="kashi">9. காசி விஸ்வநாதர் (Kashi)</option>
+                                <option value="trimbakeshwar">10. திரியம்பகேஸ்வரர் (Trimbakeshwar)</option>
+                                <option value="kedarnath">11. கேதாரநாதர் (Kedarnath)</option>
+                                <option value="grishneshwar">12. திருஷ்ணேஸ்வரர் (Grishneshwar)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Preview</th>
+                                <th>Temple</th>
+                                <th>Photo Title</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-gallery-tbody">
+                            <tr>
+                                <td colspan="4" class="text-center" style="color: var(--text-muted);">Loading gallery photos...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Donations Section -->
+                <div class="glass-card mt-2 admin-section" id="donations-section" style="display: none;">
+                    <h3 class="gold-text mb-2">Recent Donations</h3>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>PAN Number</th>
+                                <th>Txn / UTR ID</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-donations-tbody">
+                            <tr>
+                                <td colspan="7" class="text-center" style="color: var(--text-muted);">Loading donations...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="js/supabase.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
